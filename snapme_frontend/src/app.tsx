@@ -1,8 +1,20 @@
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
+import Home from "../container/home";
+import Login from "../components/login";
+
 function App() {
   return (
-    <div>
-      <h1 className="text-2xl">SnapMe</h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="login" element={<Login />} />
+        <Route path="/*" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
 
