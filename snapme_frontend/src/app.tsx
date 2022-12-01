@@ -1,10 +1,5 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./container/home";
 import Login from "./components/login";
 import { ENV } from "./utils/Env";
