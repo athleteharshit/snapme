@@ -4,8 +4,8 @@ import {
   Route,
   useNavigate,
 } from "react-router-dom";
-import Home from "../container/home";
-import Login from "../components/login";
+import Home from "./container/home";
+import Login from "./components/login";
 
 function App() {
   return (
