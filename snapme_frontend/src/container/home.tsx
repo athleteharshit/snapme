@@ -5,7 +5,6 @@ import { Link, Route, Routes } from "react-router-dom";
 
 import { Sidebar, UserProfile } from "../components";
 import { client } from "../client";
-// import Pins from "./Pins";
 import logo from "../assets/logo.png";
 import { userQuery } from "../utils/data";
 import { UserSanity } from "../type/user";
@@ -32,7 +31,7 @@ const Home = () => {
   useEffect(() => {
     scrollRef?.current.scrollTo(0, 0);
   });
-  console.log(user);
+
   return (
     <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
       <div className="hidden md:flex h-screen flex-initial">
