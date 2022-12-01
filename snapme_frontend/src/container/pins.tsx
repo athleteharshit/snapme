@@ -1,10 +1,7 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import {
-  Navbar,
-  // Feed, PinDetail, CreatePin, Search
-} from "../components";
+import { Navbar, Feed, PinDetail, CreatePin, Search } from "../components";
 import { UserSanity } from "../type/user";
 
 type PinsProps = {
@@ -25,11 +22,11 @@ const Pins = ({ user }: PinsProps) => {
       </div>
       <div className="h-full">
         <Routes>
-          {/* <Route path="/" element={<Feed />} />
+          <Route path="/" element={<Feed />} />
           <Route path="/category/:categoryId" element={<Feed />} />
           <Route
             path="/pin-detail/:pinId"
-            element={<PinDetail user={user} />}
+            element={user && <PinDetail user={user} />}
           />
           <Route path="/create-pin" element={<CreatePin user={user} />} />
           <Route
@@ -37,7 +34,7 @@ const Pins = ({ user }: PinsProps) => {
             element={
               <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             }
-          /> */}
+          />
         </Routes>
       </div>
     </div>
