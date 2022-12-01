@@ -1,22 +1,28 @@
-import GoogleLogin, {
-  GoogleLoginResponse,
-  GoogleLoginResponseOffline,
-} from "react-google-login";
+import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
 import shareVideo from "../assets/share.mp4";
 import logo from "../assets/logowhite.png";
-import { ENV } from "../utils/Env";
+import jwt_decode from "jwt-decode";
+import { client } from "../client";
 
 function Login() {
-  const responseGoogle = (
-    response: GoogleLoginResponse | GoogleLoginResponseOffline
-  ) => {
-    console.log(response);
+  const navigate = useNavigate();
+  const responseGoogle = (credentialResponse: CredentialResponse) => {
+    const response: any = jwt_decode(credentialResponse.credential || "");
+    localStorage.setItem("user", JSON.stringify(response));
+    const { name, sub, picture } = response;
+    const doc = {
+      _id: sub,
+      _type: "user",
+      userName: name,
+      image: picture,
+    };
+    client.createIfNotExists(doc).then(() => {
+      navigate("/", { replace: true });
+    });
   };
-
   return (
-    <div className="flex justify-start items-center flex-col h-full">
+    <div className="flex justify-start items-center flex-col h-screen">
       <div className="relative h-full w-full">
         <video
           src={shareVideo}
@@ -34,20 +40,11 @@ function Login() {
 
           <div className="shadow-2xl">
             <GoogleLogin
-              clientId={`${ENV.GOOGLE_API_TOKEN}`}
-              render={(renderProps) => (
-                <button
-                  type="button"
-                  className="bg-mainColor flex justify-center items-center p-3 rounded-lg cursor-pointer outline-none"
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.disabled}
-                >
-                  <FcGoogle className="mr-4" /> Sign in with google
-                </button>
-              )}
               onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy="single_host_origin"
+              onError={() => {
+                console.log("Login Failed");
+              }}
+              useOneTap
             />
           </div>
         </div>
