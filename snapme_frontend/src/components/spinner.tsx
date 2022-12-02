@@ -1,6 +1,6 @@
 import { CirclesWithBar } from "react-loader-spinner";
 
-function Spinner({ message }: { message: string }) {
+function Spinner({ message }: { message?: string }) {
   return (
     <div className="flex flex-col justify-center items-center w-full h-full">
       <CirclesWithBar
