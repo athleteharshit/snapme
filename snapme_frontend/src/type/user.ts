@@ -1,3 +1,5 @@
+import { TImage } from "./comman";
+
 export type UserSanity = {
   image: string;
   userName: string;
@@ -11,4 +13,16 @@ export type UserSanity = {
 export type UserGoogle = {
   image: string;
   userName: string;
+};
+
+export type TPins = {
+  destination: string;
+  image: TImage;
+  postedBy: {
+    _id: string;
+    image: string;
+    userName: string;
+  };
+  _id: string;
+  save: any;
 };

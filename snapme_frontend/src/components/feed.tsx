@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { client } from "../client";
+import { TPins } from "../type/user";
 import { feedQuery, searchQuery } from "../utils/data";
 import MasonryLayout from "./masonry.layout";
 import Spinner from "./spinner";
 
 const Feed = () => {
-  const [pins, setPins] = useState();
+  const [pins, setPins] = useState<TPins[]>();
   const [loading, setLoading] = useState(false);
   const { categoryId } = useParams();
 
@@ -29,7 +30,6 @@ const Feed = () => {
     }
   }, [categoryId]);
   const ideaName = categoryId || "new";
-  console.log(pins);
   if (loading) {
     return (
       <Spinner message={`We are adding ${ideaName} ideas to your feed!`} />

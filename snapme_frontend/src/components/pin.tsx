@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { MdDownloadForOffline } from "react-icons/md";
 import { AiTwotoneDelete } from "react-icons/ai";
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
+import { TPins } from "../type/user";
 
 import { client, urlFor } from "../client";
 
-const Pin = ({ pin }: any) => {
+const Pin = ({ pin }: { pin: TPins; className: string }) => {
   const [postHovered, setPostHovered] = useState(false);
   const [savingPost, setSavingPost] = useState(false);
 
@@ -27,7 +28,7 @@ const Pin = ({ pin }: any) => {
   };
 
   let alreadySaved = pin?.save?.filter(
-    (item: any) => item?.postedBy?._id === user?.googleId
+    (item: any) => item?.postedBy?._id === user?.sub
   );
 
   alreadySaved = alreadySaved?.length > 0 ? alreadySaved : [];
@@ -42,10 +43,10 @@ const Pin = ({ pin }: any) => {
         .insert("after", "save[-1]", [
           {
             _key: uuidv4(),
-            userId: user?.googleId,
+            userId: user?.sub,
             postedBy: {
               _type: "postedBy",
-              _ref: user?.googleId,
+              _ref: user?.sub,
             },
           },
         ])
@@ -123,7 +124,7 @@ const Pin = ({ pin }: any) => {
                   {destination?.slice(8, 17)}...
                 </a>
               ) : undefined}
-              {postedBy?._id === user?.googleId && (
+              {postedBy?._id === user?.sub && (
                 <button
                   type="button"
                   onClick={(e) => {
