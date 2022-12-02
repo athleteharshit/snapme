@@ -5,6 +5,7 @@ import { RiHomeFill } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
 import logo from "../assets/logo.png";
 import { categories } from "../utils/data";
+import { BiLogIn } from "react-icons/bi";
 
 const isNotActiveStyle =
   "flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize";
@@ -63,7 +64,7 @@ function Sidebar({ user, closeToggle }: SidebarProps) {
           ))}
         </div>
       </div>
-      {user && (
+      {user ? (
         <Link
           to={`user-profile/${user._id}`}
           className="flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
@@ -76,6 +77,15 @@ function Sidebar({ user, closeToggle }: SidebarProps) {
           />
           <p>{user.userName}</p>
           <IoIosArrowForward />
+        </Link>
+      ) : (
+        <Link
+          to={`login`}
+          className="flex my-5 mb-3 gap-2 p-2 items-center bg-white rounded-lg shadow-lg mx-3"
+          onClick={handleCloseSidebar}
+        >
+          <BiLogIn fontSize={40} />
+          <p>Sign In</p>
         </Link>
       )}
     </div>

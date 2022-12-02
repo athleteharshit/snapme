@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { HiMenu } from "react-icons/hi";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { BiLogIn } from "react-icons/bi";
 import { Link, Route, Routes } from "react-router-dom";
 
 import { Sidebar, UserProfile } from "../components";
@@ -48,15 +49,19 @@ const Home = () => {
           <Link to="/">
             <img src={logo} alt="logo" className="w-28" />
           </Link>
-          <Link to={`user-profile/${user?._id}`}>
-            {user?.image && (
+          {user ? (
+            <Link to={`user-profile/${user?._id}`}>
               <img
                 src={user.image}
                 alt="user-pic"
                 className="w-9 h-9 rounded-full "
               />
-            )}
-          </Link>
+            </Link>
+          ) : (
+            <Link to="login">
+              <BiLogIn fontSize={40} />
+            </Link>
+          )}
         </div>
         {toggleSidebar && (
           <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in">
