@@ -9,7 +9,7 @@ import Spinner from "./spinner";
 import { UserSanity } from "../type/user";
 
 type CreatePinProps = {
-  user: UserSanity;
+  user?: UserSanity;
 };
 
 const CreatePin = ({ user }: CreatePinProps) => {
@@ -55,7 +55,7 @@ const CreatePin = ({ user }: CreatePinProps) => {
   };
 
   const savePin = () => {
-    if (title && about && destination && imageAsset?._id && category) {
+    if (title && about && destination && imageAsset?._id && category && user) {
       const doc = {
         _type: "pin",
         title,

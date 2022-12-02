@@ -26,6 +26,7 @@ function Login() {
       <div className="relative h-full w-full">
         <video
           src={shareVideo}
+          // @ts-ignore
           type="video/mp4"
           loop
           muted

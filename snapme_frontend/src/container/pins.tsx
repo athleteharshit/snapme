@@ -5,7 +5,7 @@ import { Navbar, Feed, PinDetail, CreatePin, Search } from "../components";
 import { UserSanity } from "../type/user";
 
 type PinsProps = {
-  user: UserSanity;
+  user?: UserSanity;
 };
 
 const Pins = ({ user }: PinsProps) => {

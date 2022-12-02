@@ -18,7 +18,8 @@ const Pin = ({ pin }: { pin: TPins; className: string }) => {
 
   const user =
     localStorage.getItem("user") !== "undefined"
-      ? JSON.parse(localStorage.getItem("user") || "")
+      ? // @ts-ignore
+        JSON.parse(localStorage.getItem("user"))
       : localStorage.clear();
 
   const deletePin = (id: string) => {

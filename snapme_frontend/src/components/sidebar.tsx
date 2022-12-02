@@ -12,7 +12,7 @@ const isActiveStyle =
   "flex items-center px-5 gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize";
 
 type SidebarProps = {
-  user: UserSanity;
+  user?: UserSanity;
   closeToggle?: Dispatch<SetStateAction<boolean>>;
 };
 

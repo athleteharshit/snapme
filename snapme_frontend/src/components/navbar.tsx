@@ -4,7 +4,7 @@ import { IoMdAdd, IoMdSearch } from "react-icons/io";
 import { UserSanity } from "../type/user";
 
 type NavbarProps = {
-  user: UserSanity;
+  user?: UserSanity;
   setSearchTerm: Dispatch<SetStateAction<string>>;
   searchTerm: string;
 };
